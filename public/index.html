@@ -1,0 +1,142 @@
+<!--
+author: austin moses
+version: 1.2 (dev box)
+github: sobieMoses
+-->
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title><austins-secret-food-app></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <link rel="stylesheet" href="styles/food-style.css">
+  <link rel="stylesheet" href="styles/food-style.css">
+
+</head>
+<body>
+<!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-cassette"></i>
+        Austin's Secret Food App</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" target="nu" href="https://validator.w3.org/nu/?doc=http%3A%2F%2F127.0.0.1%3A5501%2Fpages%2Fabout.html">
+              Check Page Validity ✅</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <main
+    class="m-1 p-2 seeBorder">
+    <h2>Welcome to Austin's Favorite Foods Lists!</h2>
+    <div class="container">
+      <header>
+          <br>
+          <p>
+            This webpage was created to share my own personal favorite foods with the world!
+            <br>
+            Here you can discover a world of different culinary delights within my app! From delicious small foods to mouth-watering
+            main courses, explore and share my favorite dishes. Whether you are looking for inspiration for your next meal or just 
+            love browsing food like me, this app is your guide for tasty treasures. Let's dive in and take your tastebuds to flavortown! 
+          </p>
+        </section>
+        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmh5dXdseTM0aTNuOXZhcG85bm80YjIzbnRvdXF4cjBweGt4Y2Y1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1DU6QSVbw9gMJDNOyd/giphy.gif"
+        alt="Flavortown GIF" width="400" height="350">
+      </header>
+
+      <!--Modal Buttons-->
+      <button id="btnAddFood" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addFoodModal">add food</button>
+      
+      <button id="btnShowAll" class="btn btn-info btn-sm">show all</button>
+      <button id="btnHideAll" class="btn btn-info btn-sm">hide all</button>
+  
+      <button id="btnConsoleData" class="btn btn-info btn-sm">write data object in console</button>
+  
+    </div>
+
+   <!-- Modal -->
+   <div id="addFoodModal" class="modal fade" tabindex="-1" aria-labelledby="addFoodModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Food</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group"> 
+
+            <li class="input-group w-100">
+              <span class="w-20 input-group-text">food name</span>
+              <input id="foodAddName" type="text" class="form-control" placeholder="food name">
+            </li>
+            <li class="input-group w-100">
+              <span class="w-20 input-group-text">food rating</span>
+              <input id="foodAddRating" type="text" class="form-control" placeholder="food rating">
+            </li>
+            <li class="input-group w-100">
+              <span class="w-20 input-group-text">food recipeURL</span>
+              <input id="foodAddRecipeURL" type="text" class="form-control" placeholder="food recipeURL">
+            </li>
+            <li class="input-group w-100">
+              <span class="w-20 input-group-text">food tags</span>
+              <input id="foodAddTags" type="text" class="form-control" placeholder="food tags">
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="btnSaveFood" type="button" class="btn btn-primary">save food</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+<ul id="foodList" class="list-group"></ul>
+  <li class="list-group-item"> no foods loaded </li>
+
+    </ul>
+  </div>
+  </main>
+
+  <footer>
+    <!--Copyright tag-->
+    <div class="text-center p-3"
+    style="background-color:grey"> 
+    © 2024
+    <a class="text-body" href="https://github.com/AustinMO30" target="_blank">AM</a>  |
+    <!--<a href="README.md" target="readme">readme</a> |-->
+    <a href="https://gist.github.com/AustinMO30/914c2da3fabd7b88ac733412a425030e" target="_blank">My Wireframe</a>  | 
+    <a href="https://github.com/AustinMO30/vigilant-cow-food-app" target="_blank">Source Code</a>
+  </div>
+    
+  </footer>
+  <!--Scripts-->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+  <script src="scripts/data.js"></script>
+  <script src="scripts/food-scripts.js"></script>
+</html>
+
+
+
+</body>
+</html>
