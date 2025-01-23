@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000;  
+const bodyParser = require('body-parser')
 
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'))
+app.use(bodyParser.urlencoded({extended: true})); 
+app.use(express.static(__dirname + '/views'))
 
 // change my code 
 
@@ -11,13 +13,34 @@ app.get('/', function (req, res) {
   res.sendFile('index.html');
 
 })
+app.post('/saveMyName', (req,res)=>{
+  console.log('did we hit the post endpoint?'); 
 
-//ejs stuff
+  console.log(req.body); 
+
+  //res.redirect('/ejs');
+  res.render('words',
+    {pageTitle:req.body.myName}
+  ); 
+
+})
+
+app.get('/saveMyNameGET', (req,res)=>{
+  console.log('did we hit the GET endpoint?'); 
+
+  console.log(req.query); 
+
+  res.redirect('/ejs'); 
+
+})
+
+
 app.get('/ejs', function (req, res) {
   res.render('words',
     {pageTitle: 'my cool ejs page'}
   );
 })
+
 
 
 app.get('/nodemon', function (req, res) {
