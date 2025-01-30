@@ -1,19 +1,19 @@
 const express = require('express')
 require('dotenv').config()
+const shajs = require('sha.js')
 const app = express()
 const port = process.env.PORT || 3000;  
 const bodyParser = require('body-parser')
 
-
+//console.log(uri)
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true})); 
 app.use(express.static(__dirname + '/public'))
-
-// change my code 
+ 
 
 //MongoClient Code
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://<db_username>:<db_password>@cluster1.ushex.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1";
+const uri = process.env.MONGO_URI;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -23,6 +23,8 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   }
 });
+
+console.log(shajs('sha256').update('food').digest('hex'));
 
 async function run() {
   try {
@@ -39,34 +41,56 @@ async function run() {
 run().catch(console.dir);
 //end of MongoClient Code
 
+async function getData() {
+  await client.connect();
+  let collection = await client.db("secret-food-app").collection("secret-food-list");
 
+  //new code HERE
+  let results = await collection.find({}).toArray();
+  //.limit(50)
+  //.toArray();
+  //res.send(results).status(200);
+  console.log(results);
+  return results;
+}
+getData();
+
+
+app.get('/read', async function (req, res) {
+  let getDataResults = await getData();
+
+  res.send(getDataResults);
+)}
+//FIX THIS SNIPPETT
+  
+
+
+//begin all my middlewares
 app.get('/', function (req, res) {
   res.sendFile('index.html');
 
 })
 app.post('/saveMyName', (req,res)=>{
   console.log('did we hit the post endpoint?'); 
-
-  console.log('req.query: ', req.query);
-  res.redirect('/ejs')
-  
-  //console.log
-
-  
-
-  //res.redirect('/ejs');
+  console.log(req.body); 
+  // res.redirect('/ejs'); 
   res.render('words',
-    {pageTitle:req.body.myName}
-  ); 
+  {pageTitle: req.body.myName});
 
 })
 
-app.get('/saveMyNameGET', (req,res)=>{
-  console.log('did we hit the GET endpoint?'); 
+app.get('/saveMyNameGet', (req,res)=>{
+  console.log('did we hit the get endpoint?'); 
 
-  console.log(req.query); 
+  console.log('req.query: ', req.query); 
 
-  res.redirect('/ejs'); 
+  // console.log('req.params: ', req.params);
+
+  let reqName = req.query.myNameGet; 
+  // res.redirect('/ejs'); 
+
+  res.render('words',
+  {pageTitle: reqName});
 
 })
 
