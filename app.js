@@ -38,29 +38,33 @@ async function run() {
     await client.close();
   }
 }
-run().catch(console.dir);
+//run().catch(console.dir);
 //end of MongoClient Code
 
 async function getData() {
   await client.connect();
-  let collection = await client.db("secret-food-app").collection("secret-food-list");
-
+  let collection = await client.db("secret-food-app").collection("secret-app-foods");
+  console.log('a')
   //new code HERE
   let results = await collection.find({}).toArray();
+  // console.log(results); 
   //.limit(50)
   //.toArray();
   //res.send(results).status(200);
   console.log(results);
   return results;
 }
-getData();
+//getData();
+
 
 
 app.get('/read', async function (req, res) {
   let getDataResults = await getData();
-
-  res.send(getDataResults);
-)}
+  console.log(getDataResults);
+  res.render('food_name',
+    { foodData : getDataResults} );
+  
+  })
 //FIX THIS SNIPPETT
   
 
