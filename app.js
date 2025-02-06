@@ -61,14 +61,63 @@ async function getData() {
 app.get('/read', async function (req, res) {
   let getDataResults = await getData();
   console.log(getDataResults);
-  res.render('food_name',
+  res.render('foods',
     { foodData : getDataResults} );
   
   })
 //FIX THIS SNIPPETT
+
+//start of new code
+app.post('/insert', async (req,res)=> {
+  // app.get('/insert', async (req,res)=> {
   
-
-
+    console.log('in /insert');
+    
+    let newSong = req.body.myName; //only for POST, GET is req.params? 
+    // let newSong = req.query.myName;
+    console.log(newSong);
+  
+    //connect to db,
+    await client.connect();
+    //point to the collection 
+    await client
+      .db("guitar-app-database")
+      .collection("guitar-app-songs")
+      .insertOne({ whatthewhatever: newSong});
+  
+    res.redirect('/read');
+  
+  }); 
+  
+  app.post('/update', async (req,res)=>{
+  
+    console.log("req.body: ", req.body)
+  
+    client.connect; 
+    const collection = client.db("barrys-db").collection("whatever-collection");
+    let result = await collection.findOneAndUpdate( 
+    {"_id": new ObjectId(req.body.nameID)}, { $set: {"fname": req.body.inputUpdateName } }
+  )
+  .then(result => {
+    console.log(result); 
+    res.redirect('/');
+  })
+  }); 
+  
+  app.post('/delete/:id', async (req,res)=>{
+  
+    console.log("in delete, req.parms.id: ", req.params.id)
+  
+    client.connect; 
+    const collection = client.db("barrys-db").collection("whatever-collection");
+    let result = await collection.findOneAndDelete( 
+    {"_id": new ObjectId(req.params.id)}).then(result => {
+    console.log(result); 
+    res.redirect('/');})
+  
+    
+  
+  })
 //begin all my middlewares
 app.get('/', function (req, res) {
   res.sendFile('index.html');
