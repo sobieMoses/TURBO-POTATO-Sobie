@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title><austins-secret-food-app></title>
+    <h2>Austin's Sobie Profile</h2>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <link rel="stylesheet" href="styles/food-style.css">
+  <link rel="stylesheet" href="styles/food-style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+<body>
+
+<main>
+
+    <form method="POST" action="insert/">
+        <input name="title">
+        <input name="post">
+        <button class="btn btn-primary" role="submit">new post</button>
+      </form>
+
+      
+    <% profileData.forEach(result=> { %>
+        <div class="col-md-8">
+        
+  
+      <form method="POST" action="update/">
+        <input name="updateTitle" value="<%= result.title %>">
+        <input name="updatePost" value="<%= result.post %>"> 
+        <input type="hidden" name="updateId" value="<%=result._id %>">
+        <button class="btn btn-primary" role="submit"><i class="bi bi-pencil"></i></button>
+      </form>
+
+      <form method="POST" action="delete/">
+        <input type="hidden" name="deleteId" value="<%=result._id %>">
+        <button class="btn btn-primary" role="submit"><i class="bi bi-trash3"></i></button>
+      </form>
+  
+  
+    </div>
+      <% }); %>
+
+</main>
+
+
+
+    
+<footer>
+    <!--Copyright tag-->
+    <div class="text-center p-3"
+    style="background-color:grey"> 
+    © 2024
+    <a class="text-body" href="https://github.com/AustinMO30" target="_blank">AM</a>  |
+    <!--<a href="README.md" target="readme">readme</a> |-->
+    <a href="https://gist.github.com/AustinMO30/914c2da3fabd7b88ac733412a425030e" target="_blank">My Wireframe</a>  | 
+    <a href="https://github.com/AustinMO30/vigilant-cow-food-app" target="_blank">Source Code</a>
+  </div>
+    
+  </footer>
+  <!--Scripts-->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+  <script src="scripts/data.js"></script>
+  <script src="scripts/food-scripts.js"></script>
+</html>
