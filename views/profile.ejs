@@ -8,33 +8,116 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-  <link rel="stylesheet" href="styles/food-style.css">
-  <link rel="stylesheet" href="styles/food-style.css">
+  <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
 <body>
-
+        <!-- Navigation Bar -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+                <i class="bi bi-cassette"></i>
+                Austin's Secret Food App</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://sobiemoses.github.io/TURBO-POTATO-Sobie/">About</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          
+          <main
+            class="m-1 p-2 seeBorder">
+            <h2>Welcome to Austin's Favorite Foods Lists!</h2>
+            <div class="container">
+              <header>
+                  <br>
+                  <p>
+                    This webpage was created to share my own personal favorite foods with the world!
+                    <br>
+                    Here you can discover a world of different culinary delights within my app! From delicious small foods to mouth-watering
+                    main courses, explore and share my favorite dishes. Whether you are looking for inspiration for your next meal or just 
+                    love browsing food like me, this app is your guide for tasty treasures. Let's dive in and take your tastebuds to flavortown! 
+                  </p>
+                </section>
+                <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmh5dXdseTM0aTNuOXZhcG85bm80YjIzbnRvdXF4cjBweGt4Y2Y1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1DU6QSVbw9gMJDNOyd/giphy.gif"
+                alt="Flavortown GIF" width="400" height="350">
+              </header>
+        
+              <!--Modal Buttons-->              
+              <button id="btnShowAll" class="btn btn-info btn-sm">show all</button>
+              <button id="btnHideAll" class="btn btn-info btn-sm">hide all</button>
+                    
+            </div>
+        
+           <!-- Modal -->
+           <div id="addFoodModal" class="modal fade" tabindex="-1" aria-labelledby="addFoodModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add New Food</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <ul class="list-group"> 
+        
+                    <li class="input-group w-100">
+                      <span class="w-20 input-group-text">food name</span>
+                      <input id="foodAddName" type="text" class="form-control" placeholder="food name">
+                    </li>
+                    <li class="input-group w-100">
+                      <span class="w-20 input-group-text">food rating</span>
+                      <input id="foodAddRating" type="text" class="form-control" placeholder="food rating">
+                    </li>
+                    <li class="input-group w-100">
+                      <span class="w-20 input-group-text">food recipeURL</span>
+                      <input id="foodAddRecipeURL" type="text" class="form-control" placeholder="food recipeURL">
+                    </li>
+                    <li class="input-group w-100">
+                      <span class="w-20 input-group-text">food tags</span>
+                      <input id="foodAddTags" type="text" class="form-control" placeholder="food tags">
+                    </li>
+                  </ul>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button id="btnSaveFood" type="button" class="btn btn-primary">save food</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <ul id="foodList" class="list-group"></ul>        
+            </ul>
+          </div>
+          </main>
+<!--start of end code-->
 <main>
-
+    <h3>Add your favorite food below and rate it!</h3>
     <form method="POST" action="insert/">
         <input name="title">
         <input name="post">
-        <button class="btn btn-primary" role="submit">new post</button>
+        <button class="btn btn-primary" role="submit">add food!</button>
       </form>
 
       
     <% profileData.forEach(result=> { %>
         <div class="col-md-8">
-        
-  
       <form method="POST" action="update/">
         <input name="updateTitle" value="<%= result.title %>">
         <input name="updatePost" value="<%= result.post %>"> 
         <input type="hidden" name="updateId" value="<%=result._id %>">
         <button class="btn btn-primary" role="submit"><i class="bi bi-pencil"></i></button>
-      </form>
-
+      </>
+    <h4>rating</h4>
       <form method="POST" action="delete/">
         <input type="hidden" name="deleteId" value="<%=result._id %>">
         <button class="btn btn-primary" role="submit"><i class="bi bi-trash3"></i></button>
@@ -54,10 +137,10 @@
     <div class="text-center p-3"
     style="background-color:grey"> 
     © 2024
-    <a class="text-body" href="https://github.com/AustinMO30" target="_blank">AM</a>  |
+    <a class="text-body" href="https://github.com/sobieMoses" target="_blank">AM</a>  |
     <!--<a href="README.md" target="readme">readme</a> |-->
     <a href="https://gist.github.com/AustinMO30/914c2da3fabd7b88ac733412a425030e" target="_blank">My Wireframe</a>  | 
-    <a href="https://github.com/AustinMO30/vigilant-cow-food-app" target="_blank">Source Code</a>
+    <a href="https://github.com/sobieMoses/TURBO-POTATO-Sobie" target="_blank">Source Code</a>
   </div>
     
   </footer>
@@ -66,5 +149,5 @@
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
   <script src="scripts/data.js"></script>
-  <script src="scripts/food-scripts.js"></script>
+  <script src="scripts/scripts.js"></script>
 </html>
